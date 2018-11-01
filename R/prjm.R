@@ -1,0 +1,55 @@
+#' @name prjm
+#' @import expm
+#' @title Calculate projection matrix.
+#' @description Left multiply a transition matrix to create its projection matrix.
+#' @param r_c A transition matrix of numeric values representing conditional probabilities in the form of a two-way table:
+#' \if{html}{
+#'   \tabular{ccccc}{
+#'        \tab       \tab Fr    \tab     \tab    \cr
+#'        \tab 0.62  \tab 0.16  \tab 0.02  \tab \dots\cr
+#'   To   \tab 0.29  \tab 0.46  \tab 0.13  \tab \dots\cr
+#'        \tab 0.06  \tab 0.30  \tab 0.31  \tab \dots\cr
+#'        \tab \dots \tab \dots \tab \dots \tab \dots
+#'   }
+#' }
+#' \if{latex}{
+#' \deqn{
+#'   \left(
+#'     \begin{array}{cccc}
+#' 0.62 & 0.16 & 0.02 & \dots \\
+#' 0.29 & 0.46 & 0.13 & \dots \\
+#' 0.06 & 0.30 & 0.31 & \dots \\
+#' \vdots & \vdots & \vdots & \ddots
+#'       \end{array}\right)
+#' }
+#' }
+#'
+#' \code{r_c} can be constructed as follows in the example below.
+#' @param n The exponent, or number of times to pre-multiply \code{r_c}.
+#' @details Left-multiply a matrix a specified number of times and returns the projection matrix of \code{r_c}, which has the same dimensions and grand sum.
+#' @return Returns a projection matrix with the same dimensions and grand sum as \code{r_c}.
+#' @examples
+#' data(transitions)                # Load example data
+#' b <- brkpts(transitions$phenofr, # Find 10 probabilistically
+#'             10)                  #  equivalent breakpoints
+#' m <- xt(transitions,             # Make transition matrix
+#'         fr.col=2, to.col=3,
+#'         cnt.col=4, brk=b)
+#' pxy <- jpmf(m)                   # Joint distribution
+#' cmd <- colSums(pxy)              # Column marginal distribution
+#' r_c <- cpf(pxy,                  # Transition matrix
+#'            margin='p(row|col)')  #  (row | col)
+#' colSums(r_c)                     # Check that each column sums to 1
+#' r_c.prj <- prjm(r_c,10^3)        # Project matrix 1,000 steps
+#' @author Bjorn J. Brooks, Lars Y. Pomara, Danny C. Lee
+#' @references PAPER TITLE.
+#' @export
+
+prjm <- function(r_c, n) {
+  if (length(m[is.na(m)==T]) > 0) {
+    m[is.na(m)==T] <- 0                          # Set NA/NaN to zero if any
+  }
+  output <- m %^% n                              # Projection matrix
+
+  return(output)
+}

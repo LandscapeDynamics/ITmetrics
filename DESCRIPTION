@@ -1,0 +1,13 @@
+Package: ITmetrics
+Type: Package
+Title: R functions for calculating IT statistics
+Version: 0.1.0
+Author: Bjorn J. Brooks, Lars Y. Pomara, Danny C. Lee
+Maintainer: Bjorn J. Brooks <bjorn@geobabble.org>
+Depends: R (>= 2.10)
+Imports: ggplot2, expm
+Suggests:
+Description: R functions R functions for calculating information theoretic measures from environmental time series data.
+License: GPL (>=3)
+LazyData: TRUE
+RoxygenNote: 6.1.0

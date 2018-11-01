@@ -1,0 +1,27 @@
+ITmetrics is an open-source R library of functions for calculating landscape
+scale statistics that summarize and describe organizational complexity. In
+the sense of ecosystems this is a useful way of understanding the
+evolution of organizational complexity in a system (see "Ecology,
+the ascendent perspective" by R.E. Ulanowicz, 1997). An array of data
+recording the transitions (discrete state changes, e.g., A -> B ->
+C...) for a domain can be processed through a series of ITmetrics functions
+to yield descriptive measures including shannon diversity, conditional
+entropy, and mutual information. Other functions for projecting
+transition matrices are also included. The ITmetrics R library can be
+used alone or with the PolarMetrics R library, and the repo of wrapper
+scripts, "landat". If used together the process begins with a
+single measure, such as NDVI (normalized difference vegetation index),
+and produces raster maps describing the average uncertainty of a domain
+(shannon diversity), the reduction in uncertainty due to organization /
+predictability (mutual information) and the average uncertainty that
+is still unexplained given prior knowledge (conditional entropy). To
+install in R you will first want to ensure you have the devtools package
+installed.
+
+# If you don't have it yet, install 'devtools' and 'ggplot2':
+install.packages('devtools')
+install.packages('ggplot2')
+# Now install ITmetrics ('expm' will install automatically if not present)
+devtools::install_github('LandscapeDynamics/ITmetrics')
+# Refer to the manual for useful demos. Then explore and enjoy!
+
